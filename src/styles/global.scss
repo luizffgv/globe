@@ -1,0 +1,82 @@
+@use "variables";
+
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
+
+* {
+  margin: 0;
+  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+}
+
+:root {
+  color: variables.$color-fg;
+
+  font-family: variables.$font;
+  font-size: 20px;
+}
+
+a {
+  color: variables.$color-primary;
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+
+  min-width: 100vw;
+  min-height: 100vh;
+
+  background-color: variables.$color-bg;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 2rem;
+  font-family: variables.$font-title;
+  color: variables.$color-primary;
+}
+
+input {
+  &[type="file"] {
+    color: variables.$color-fg-weak;
+
+    &::file-selector-button {
+      margin-right: 8px;
+
+      font-family: variables.$font-title;
+      text-transform: uppercase;
+
+      background-color: variables.$color-primary;
+      color: variables.$color-fg-inv;
+      border: none;
+    }
+  }
+}
+
+li {
+  display: flex;
+
+  list-style: none;
+
+  &::before {
+    content: "keyboard_arrow_right";
+
+    font-family: variables.$font-icon;
+
+    color: variables.$color-primary;
+  }
+}
+
+::selection {
+  color: variables.$color-fg-inv;
+  background-color: variables.$color-primary;
+}
