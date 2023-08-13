@@ -2,6 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const CnameWebpackPlugin = require("cname-webpack-plugin");
 
 const scriptsPath = path.join(__dirname, "src/scripts");
 const globalScriptsPath = path.join(scriptsPath, "global");
@@ -113,7 +114,9 @@ const assetsCopyPlugin = new CopyPlugin({
 
 const pagePlugins = pages.map((page) => page.asHtmlPlugin());
 
-const plugins = [assetsCopyPlugin, ...pagePlugins];
+const cnamePlugin = new CnameWebpackPlugin({ domain: "globe.luizf.dev" });
+
+const plugins = [assetsCopyPlugin, ...pagePlugins, cnamePlugin];
 
 /* ----------------------------- Webpack config ----------------------------- */
 
