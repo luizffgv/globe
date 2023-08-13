@@ -256,7 +256,8 @@ export default class Globe {
         this.#RADIUS - this.#WAVE_DISPLACEMENT,
         this.#RADIUS + this.#WAVE_DISPLACEMENT,
         Math.sin(
-          lerp(0, Math.PI * 2, posNormalized.y + wave) * this.#WAVE_MULTIPLIER
+          lerp(0, Math.PI * 2, (posNormalized.y + wave) % 1) *
+            this.#WAVE_MULTIPLIER
         )
       );
       if (!this.#WAVE_DISPLACE_INWARDS)
