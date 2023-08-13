@@ -2,7 +2,7 @@ import * as three from "three";
 const degToRad = three.MathUtils.degToRad;
 import * as postprocessing from "postprocessing";
 import { throwIfNull } from "@luizffgv/ts-conversions";
-import { lerp, remap } from "Scripts/math";
+import { lerp } from "Scripts/math";
 import { DragHandler } from "Scripts/pointer";
 
 type GlobeParameters = {
@@ -250,16 +250,13 @@ export default class Globe {
         .fromArray(positions.array.subarray(polygonIndex, polygonIndex + 3))
         .normalize();
 
-      let protrusion = remap(
-        -1,
-        1,
-        this.#RADIUS - this.#WAVE_DISPLACEMENT,
-        this.#RADIUS + this.#WAVE_DISPLACEMENT,
-        Math.sin(
-          lerp(0, Math.PI * 2, (posNormalized.y + wave) % 1) *
-            this.#WAVE_MULTIPLIER
-        )
-      );
+      let protrusion =
+        this.#RADIUS +
+        this.#WAVE_DISPLACEMENT *
+          Math.sin(
+            lerp(0, Math.PI * 2, (posNormalized.y + wave) % 1) *
+              this.#WAVE_MULTIPLIER
+          );
       if (!this.#WAVE_DISPLACE_INWARDS)
         protrusion = Math.max(this.#RADIUS, protrusion);
       if (!this.#WAVE_DISPLACE_OUTWARDS)
